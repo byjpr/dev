@@ -1,7 +1,6 @@
 #!/bin/sh
 
-sudo apt install curl git
-
+# Create swap file
 sudo fallocate -l 10G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
@@ -10,6 +9,10 @@ sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 sudo sysctl vm.vfs_cache_pressure=50 && sudo sysctl vm.swappiness=10
 
+# Base needs
+sudo apt install curl git
+
+# Install ASDF
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 git -C ~/.asdf checkout "$(git -C ~/.asdf describe --abbrev=0 --tags)"
@@ -17,8 +20,10 @@ git -C ~/.asdf checkout "$(git -C ~/.asdf describe --abbrev=0 --tags)"
 echo ". $HOME/.asdf/asdf.sh" > .bash_aliases
 echo ". $HOME/.asdf/completions/asdf.bash" > .bash_aliases
 
+# Reload bash
 . ~/.bashrc
 
+# Add Elixir and Erlang
 asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 
