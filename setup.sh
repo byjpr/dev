@@ -15,3 +15,8 @@ asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 
 asdf update
 asdf plugin-update --all
+
+sudo apt-get -y install build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
+asdf install erlang 22.0.3
+
+asdf install elixir 1.10.0-otp-22
